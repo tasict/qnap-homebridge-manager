@@ -1,0 +1,14 @@
+build/*.qpkg
+build/*.md5
+build/*.log
+.DS_Store
+._*
+__MACOSX/
+# Cargo registry and target of tools/build-api.sh
+.cache/
+api/target/
+# Built by tools/build-api.sh
+x86_64/bin/
+# Runtime data from local tests
+shared/data/
+.devtest/

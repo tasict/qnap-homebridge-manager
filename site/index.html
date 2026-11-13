@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="color-scheme" content="light dark">
+	<title>QNAP Homebridge Manager</title>
+	<meta name="description" content="A QNAP app that runs several Homebridge instances on one NAS, each in its own container with its own LAN address, with upgrades that switch back on failure.">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="QNAP Homebridge Manager">
+	<meta property="og:description" content="Several Homebridges on one QNAP NAS, each with its own address on your network, managed from one page on the QTS desktop.">
+	<meta property="og:url" content="https://tasict.github.io/qnap-homebridge-manager/">
+	<meta property="og:image" content="https://tasict.github.io/qnap-homebridge-manager/img/icon-256.png">
+	<meta name="twitter:card" content="summary">
+	<link rel="icon" type="image/svg+xml" href="img/mark.svg">
+	<link rel="icon" type="image/png" sizes="64x64" href="img/mark-64.png">
+	<link rel="apple-touch-icon" href="img/mark-180.png">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<a class="skip" href="#main">Skip to the content</a>
+
+	<svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+		<defs>
+			<filter id="hb-glow" x="-60%" y="-60%" width="220%" height="220%">
+				<feGaussianBlur stdDeviation="7"/>
+			</filter>
+		</defs>
+	</svg>
+
+	<header class="top">
+		<div class="wrap top-inner">
+			<a class="brand" href="./">
+				<img class="brand-mark" src="img/mark.svg" alt="" width="32" height="32">
+				<span class="brand-name">QNAP Homebridge Manager</span>
+			</a>
+			<nav class="nav" aria-label="Sections">
+				<a href="#features">Features</a>
+				<a href="#install">Install</a>
+				<a href="#how">How it works</a>
+				<a class="nav-gh" href="https://github.com/tasict/qnap-homebridge-manager">GitHub</a>
+			</nav>
+		</div>
+	</header>
+
+	<main id="main">
+		<section class="hero">
+			<div class="wrap">
+				<h1>Several Homebridges on one QNAP NAS</h1>
+				<p class="lead">A QTS app that runs each <a href="https://homebridge.io">Homebridge</a> in its own Docker container, with its own address on your home network, and looks after all of them from one page on the QTS desktop.</p>
+				<div class="cta">
+					<a class="btn btn-primary" href="https://github.com/tasict/qnap-homebridge-manager/releases/latest">Download the latest release</a>
+					<a class="btn btn-quiet" href="https://github.com/tasict/qnap-homebridge-manager">Source on GitHub</a>
+				</div>
+				<p class="fine">For x86_64 NAS models with QTS 5 and Container Station. The app’s interface is in Traditional Chinese and Japanese.</p>
+			</div>
+
+			<div class="wrap">
+				<figure class="street-panel">
+					<figcaption class="street-head">
+						<h2 class="street-title">Read the street</h2>
+						<p>Each Homebridge is a house. Its drawing tells you how it is doing, without reading a word.</p>
+					</figcaption>
+					<ul class="street">
+						<li class="lot">
+							<div class="yard">
+								<div class="house" data-color="violet" data-lights="on" style="--delay: 300ms">
+									<svg class="house-svg" viewBox="0 0 200 170" aria-hidden="true" focusable="false">
+										<rect class="h-wall" x="28" y="76" width="144" height="93" rx="2"/>
+										<rect class="h-eave" x="29" y="83" width="142" height="6"/>
+										<g><rect class="h-glow" x="38" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="44" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M64 98v28M44 112h40"/></g>
+										<g><rect class="h-glow" x="110" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="116" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M136 98v28M116 112h40"/></g>
+										<path class="h-door" d="M51 169.5V139a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4v30.5z"/>
+										<circle class="h-knob" cx="75.5" cy="154" r="1.9"/>
+										<rect class="h-step" x="45" y="166.5" width="42" height="3.5" rx="1.5"/>
+										<path class="h-roof" d="M19 79.5L93.6 21.6a10.4 10.4 0 0 1 12.8 0L181 79.5a2.6 2.6 0 0 1-1.6 4.7H20.6a2.6 2.6 0 0 1-1.6-4.7z"/>
+										<circle class="h-sign" cx="100" cy="57" r="17"/>
+										<text class="h-emoji" x="100" y="58.5" text-anchor="middle" dominant-baseline="central" font-size="20">🛋️</text>
+									</svg>
+									<span class="plate">192.168.1.21</span>
+								</div>
+							</div>
+							<div class="lot-info">
+								<span class="lot-name">Living room</span>
+								<span class="lot-state"><span class="dot dot-on"></span>Running</span>
+								<span class="lot-note">Lit windows: it is running.</span>
+							</div>
+						</li>
+
+						<li class="lot">
+							<div class="yard">
+								<div class="house" data-color="orange" data-lights="on" style="--delay: 470ms">
+									<svg class="house-svg" viewBox="0 0 200 170" aria-hidden="true" focusable="false">
+										<rect class="h-wall" x="28" y="76" width="144" height="93" rx="2"/>
+										<rect class="h-eave" x="29" y="83" width="142" height="6"/>
+										<g><rect class="h-glow" x="38" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="44" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M64 98v28M44 112h40"/></g>
+										<g><rect class="h-glow" x="110" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="116" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M136 98v28M116 112h40"/></g>
+										<path class="h-door" d="M51 169.5V139a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4v30.5z"/>
+										<circle class="h-knob" cx="75.5" cy="154" r="1.9"/>
+										<rect class="h-step" x="45" y="166.5" width="42" height="3.5" rx="1.5"/>
+										<path class="h-roof" d="M19 79.5L93.6 21.6a10.4 10.4 0 0 1 12.8 0L181 79.5a2.6 2.6 0 0 1-1.6 4.7H20.6a2.6 2.6 0 0 1-1.6-4.7z"/>
+										<circle class="h-sign" cx="100" cy="57" r="17"/>
+										<text class="h-emoji" x="100" y="58.5" text-anchor="middle" dominant-baseline="central" font-size="20">🌿</text>
+										<g class="h-parcel"><rect class="h-box" x="22" y="152" width="25" height="17.5" rx="2"/><path class="h-tape" d="M34.5 152v17.5M22 157.5h25"/></g>
+									</svg>
+									<span class="plate">192.168.1.22</span>
+								</div>
+							</div>
+							<div class="lot-info">
+								<span class="lot-name">Garden</span>
+								<span class="lot-state"><span class="dot dot-on"></span>Update available</span>
+								<span class="lot-note">A parcel on the doorstep: a newer image is waiting. Click it to upgrade.</span>
+							</div>
+						</li>
+
+						<li class="lot">
+							<div class="yard">
+								<div class="house" data-color="teal" data-lights="off">
+									<svg class="house-svg" viewBox="0 0 200 170" aria-hidden="true" focusable="false">
+										<rect class="h-wall" x="28" y="76" width="144" height="93" rx="2"/>
+										<rect class="h-eave" x="29" y="83" width="142" height="6"/>
+										<g><rect class="h-glow" x="38" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="44" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M64 98v28M44 112h40"/></g>
+										<g><rect class="h-glow" x="110" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="116" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M136 98v28M116 112h40"/></g>
+										<path class="h-door" d="M51 169.5V139a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4v30.5z"/>
+										<circle class="h-knob" cx="75.5" cy="154" r="1.9"/>
+										<rect class="h-step" x="45" y="166.5" width="42" height="3.5" rx="1.5"/>
+										<path class="h-roof" d="M19 79.5L93.6 21.6a10.4 10.4 0 0 1 12.8 0L181 79.5a2.6 2.6 0 0 1-1.6 4.7H20.6a2.6 2.6 0 0 1-1.6-4.7z"/>
+										<circle class="h-sign" cx="100" cy="57" r="17"/>
+										<text class="h-emoji" x="100" y="58.5" text-anchor="middle" dominant-baseline="central" font-size="20">🚗</text>
+										<g class="h-scaffold"><path class="h-pole" d="M16 169.5V40M70 169.5V24M130 169.5V24M184 169.5V40"/><path class="h-plank" d="M10 88h180M10 131h180M58 46h84"/><path class="h-brace" d="M16 131L70 88M130 131L184 88M70 169.5L130 131"/></g>
+									</svg>
+									<span class="plate is-progress" style="--p: 64%">64%</span>
+								</div>
+							</div>
+							<div class="lot-info">
+								<span class="lot-name">Garage</span>
+								<span class="lot-state"><span class="dot dot-busy"></span>Upgrading</span>
+								<span class="lot-note">Scaffolding: it is being rebuilt. The door plate shows the progress.</span>
+							</div>
+						</li>
+
+						<li class="lot">
+							<div class="yard">
+								<div class="house" data-kind="unmanaged" data-lights="on">
+									<svg class="house-svg" viewBox="0 0 200 170" aria-hidden="true" focusable="false">
+										<rect class="h-wall" x="28" y="76" width="144" height="93" rx="2"/>
+										<rect class="h-eave" x="29" y="83" width="142" height="6"/>
+										<g><rect class="h-glow" x="38" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="44" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M64 98v28M44 112h40"/></g>
+										<g><rect class="h-glow" x="110" y="92" width="52" height="40" rx="10"/><rect class="h-win" x="116" y="98" width="40" height="28" rx="4"/><path class="h-mullion" d="M136 98v28M116 112h40"/></g>
+										<path class="h-door" d="M51 169.5V139a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4v30.5z"/>
+										<circle class="h-knob" cx="75.5" cy="154" r="1.9"/>
+										<rect class="h-step" x="45" y="166.5" width="42" height="3.5" rx="1.5"/>
+										<path class="h-roof" d="M19 79.5L93.6 21.6a10.4 10.4 0 0 1 12.8 0L181 79.5a2.6 2.6 0 0 1-1.6 4.7H20.6a2.6 2.6 0 0 1-1.6-4.7z"/>
+										<circle class="h-sign" cx="100" cy="57" r="17"/>
+										<text class="h-emoji" x="100" y="58.5" text-anchor="middle" dominant-baseline="central" font-size="20">🏠</text>
+									</svg>
+									<span class="plate">192.168.1.30</span>
+								</div>
+							</div>
+							<div class="lot-info">
+								<span class="lot-name mono">homebridge-old</span>
+								<span class="lot-state"><span class="dot dot-off"></span>Not managed yet</span>
+								<span class="lot-note">Grey: a container that already runs on the NAS. Take it over, and the Home app keeps its pairing.</span>
+							</div>
+						</li>
+
+						<li class="lot">
+							<div class="yard">
+								<svg class="plot-svg" viewBox="0 0 200 170" aria-hidden="true" focusable="false">
+									<path class="plot-outline" d="M28 169.5V84.2H20.6a2.6 2.6 0 0 1-1.6-4.7L93.6 21.6a10.4 10.4 0 0 1 12.8 0L181 79.5a2.6 2.6 0 0 1-1.6 4.7H172v85.3"/>
+									<path class="plot-post" d="M100 169.5v-38"/>
+									<rect class="plot-sign" x="70" y="98" width="60" height="36" rx="7"/>
+									<path class="plot-plus" d="M100 106v20M90 116h20"/>
+								</svg>
+							</div>
+							<div class="lot-info">
+								<span class="lot-name">Add Homebridge</span>
+								<span class="lot-note">The street always ends with an empty lot. Four steps: name, network, folders, confirm.</span>
+							</div>
+						</li>
+					</ul>
+				</figure>
+			</div>
+		</section>
+
+		<section class="section" id="features" aria-labelledby="features-title">
+			<div class="wrap">
+				<h2 class="section-title" id="features-title">What it does</h2>
+				<div class="grid">
+					<article class="card">
+						<h3>Its own address</h3>
+						<p>Every Homebridge gets a fixed address or one from your router (DHCP), with a fixed MAC address. On the network it is its own device, so HomeKit finds it as usual. While you type an address, the app checks that nothing else uses it.</p>
+					</article>
+					<article class="card">
+						<h3>Upgrades that switch back</h3>
+						<p>The app compares your image with Docker Hub when you open it. An upgrade pulls the new image, recreates the container and watches it. If it does not stay up, the previous container is switched back on, and it stays as a backup you can return to later.</p>
+					</article>
+					<article class="card">
+						<h3>Take over what you have</h3>
+						<p>Homebridge containers you made in Container Station show up on the street. Taking one over keeps its name, address, MAC and folders, so the Home app does not need to pair again.</p>
+					</article>
+					<article class="card">
+						<h3>Safe from a stray click</h3>
+						<p>The containers live on Container Station’s <code>system-docker</code>, which Container Station’s own list does not show, so nobody deletes them there by mistake.</p>
+					</article>
+					<article class="card">
+						<h3>Your folders, untouched</h3>
+						<p>The work folder holds the configuration, plugins and pairing. Mount more shared folders with a folder browser. The app never empties, deletes or changes the ownership of a folder.</p>
+					</article>
+					<article class="card">
+						<h3>Open it by name</h3>
+						<p>One click opens each Homebridge’s own web page, with its port and HTTPS setting. Bind a domain name and the app tells you where it resolves. It never edits your DNS.</p>
+					</article>
+					<article class="card">
+						<h3>See what it is doing</h3>
+						<p>Each Homebridge shows its container log and resource use. Upgrades and changes run in the background and show every step as it happens.</p>
+					</article>
+					<article class="card">
+						<h3>HomeKit keeps running</h3>
+						<p>Containers run on Docker’s restart policy, not as part of the app. Stopping, upgrading or removing the app does not stop a single Homebridge.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section section-alt" id="install" aria-labelledby="install-title">
+			<div class="wrap two-col">
+				<div>
+					<h2 class="section-title" id="install-title">Install</h2>
+					<ol class="steps">
+						<li>Download <code>Homebridge_&lt;version&gt;_x86_64.qpkg</code> from the <a href="https://github.com/tasict/qnap-homebridge-manager/releases/latest">latest release</a>.</li>
+						<li>In QTS, open <strong>App Center</strong>, choose <strong>Install Manually</strong> and select the file.</li>
+						<li>The package is not signed by QNAP. If App Center refuses it, allow the installation of apps without a valid digital signature in App Center’s settings, then try again.</li>
+						<li>Open <strong>Homebridge</strong> from the QTS main menu.</li>
+					</ol>
+					<p>Or install from an SSH session as an administrator:</p>
+					<pre><code>sh Homebridge_&lt;version&gt;_x86_64.qpkg</code></pre>
+					<p class="muted">Installing a newer version keeps your settings and leaves running containers alone.</p>
+				</div>
+				<aside class="box" aria-labelledby="req-title">
+					<h3 id="req-title">Requirements</h3>
+					<ul class="plain">
+						<li>A QNAP NAS with an x86_64 CPU running QTS 5</li>
+						<li>Container Station, with its <code>system-docker</code> and the <code>qnet</code> network driver</li>
+						<li>Internet access to pull the Homebridge image from Docker Hub</li>
+						<li>A QTS administrator account</li>
+					</ul>
+					<p class="muted">Tested on QTS 5.2.11 with Container Station 3.1.2.</p>
+				</aside>
+			</div>
+		</section>
+
+		<section class="section" id="how" aria-labelledby="how-title">
+			<div class="wrap">
+				<h2 class="section-title" id="how-title">How it works</h2>
+				<p class="section-lead">One Rust program, <code>hbmgr</code>, runs behind the QTS admin web server. It checks your QTS session and speaks to Docker directly over its socket: no Docker CLI, no shell, no PHP. The page is plain HTML, CSS and JavaScript.</p>
+
+				<h3 class="sub">Every change can be undone</h3>
+				<p>Applying settings, upgrading and taking over all use the same step, a recreate with rollback:</p>
+				<ol class="flow">
+					<li><strong>Stop</strong> the current container and keep it as the backup, <code>&lt;name&gt;.hbmgr-prev</code>.</li>
+					<li><strong>Create</strong> the new container with the same address and MAC, and start it.</li>
+					<li><strong>Watch</strong> it for a few seconds.</li>
+					<li><strong>Keep</strong> it, or put the old container back exactly as it was.</li>
+				</ol>
+
+				<div class="two-col how-cols">
+					<div>
+						<h3 class="sub">Where things live</h3>
+						<ul class="plain">
+							<li>Containers, images and networks: on Container Station’s <code>system-docker</code>.</li>
+							<li>Addresses: Container Station’s <code>qnet</code> network driver.</li>
+							<li>Settings of each Homebridge: a JSON file in the app’s data folder. Containers also carry <code>hbmgr.*</code> labels, so a reinstall finds them again.</li>
+							<li>Your data: in the work folder you chose, never inside the app.</li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="sub">Good to know</h3>
+						<ul class="plain">
+							<li>The containers do not appear in Container Station. Use this app to see them.</li>
+							<li>Uninstalling the app leaves the containers running. Install it again and they show up to be taken over.</li>
+							<li>Reinstalling or resetting Container Station can remove the containers. The work folders survive: create the Homebridge again with the same folder and address, and pairing is kept.</li>
+							<li>Nothing runs in the background. Updates are checked only while the page is open.</li>
+							<li>The app can mount any shared folder, so only QTS administrators can use it.</li>
+						</ul>
+					</div>
+				</div>
+
+				<p class="more">The details are in the <a href="https://github.com/tasict/qnap-homebridge-manager#readme">README</a>, the <a href="https://github.com/tasict/qnap-homebridge-manager/blob/master/docs/API.md">API contract</a> and the <a href="https://github.com/tasict/qnap-homebridge-manager/blob/master/docs/UX.md">interface design</a>.</p>
+			</div>
+		</section>
+	</main>
+
+	<footer class="foot">
+		<div class="wrap foot-inner">
+			<p>QNAP Homebridge Manager is free software under the <a href="https://github.com/tasict/qnap-homebridge-manager/blob/master/LICENSE">GNU General Public License v3.0 or later</a>.</p>
+			<p class="muted">An independent project, not affiliated with or endorsed by the Homebridge project or QNAP Systems. Homebridge runs from the official <a href="https://hub.docker.com/r/homebridge/homebridge"><code>homebridge/homebridge</code></a> image, which has its own license.</p>
+			<p class="foot-links"><a href="https://github.com/tasict/qnap-homebridge-manager">Source</a><a href="https://github.com/tasict/qnap-homebridge-manager/releases">Releases</a><a href="https://github.com/tasict/qnap-homebridge-manager/issues">Issues</a></p>
+		</div>
+	</footer>
+</body>
+</html>

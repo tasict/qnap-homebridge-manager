@@ -1,0 +1,913 @@
+/* QNAP Homebridge Manager - project page.
+ * Same tokens and the same house as the app (shared/web/css/app.css,
+ * docs/UX.md): the house drawing is the one bold element, the rest stays quiet. */
+
+:root {
+	color-scheme: light;
+
+	--mist: #EEF1F8;
+	--surface: #FFFFFF;
+	--surface-2: #F5F7FC;
+	--ink: #1F2440;
+	--ink-2: #535A78;
+	--ink-3: #6E7491;
+	--line: #DCE1EC;
+	--line-strong: #C7CEDF;
+	--violet: #6B4BD8;
+	--violet-ink: #5B3CC8;
+	--violet-soft: #EEEAFD;
+	--plate: #1E7A5A;
+	--plate-off: #666C86;
+	--glow: #FFC94A;
+	--brick: #D8503F;
+	--amber-mark: #E09A1A;
+
+	--ground: #B9C1D6;
+	--wall: #FFFFFF;
+	--wall-edge: #CBD2E2;
+	--eave: rgba(31, 36, 64, 0.07);
+	--frame: #FFFFFF;
+	--win-off: #B8C0D4;
+	--sign: #FFFFFF;
+	--glow-strength: 0.55;
+	--steel: #7F889F;
+	--wood: #C08B4E;
+	--parcel: #C9935A;
+	--parcel-edge: #8D5C2C;
+	--parcel-tape: #EBD3AA;
+	--ghost-roof: #D3D8E5;
+	--ghost-wall: #F4F6FA;
+	--ghost-edge: #A8B0C5;
+
+	--roof-violet: #7C5CE0;
+	--roof-orange: #F08A34;
+	--roof-teal: #17A2A0;
+
+	--shadow-1: 0 1px 2px rgba(31, 36, 64, 0.06), 0 1px 1px rgba(31, 36, 64, 0.04);
+	--shadow-2: 0 2px 4px rgba(31, 36, 64, 0.06), 0 10px 28px -8px rgba(31, 36, 64, 0.22);
+
+	--font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--font-round: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Cascadia Mono", "Noto Sans Mono", monospace;
+	--font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+
+	--r-md: 12px;
+	--r-lg: 18px;
+	--ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* the same street at dusk */
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		color-scheme: dark;
+		--mist: #141930;
+		--surface: #1D2340;
+		--surface-2: #232A4A;
+		--ink: #ECEEF9;
+		--ink-2: #A9AFCC;
+		--ink-3: #8C92B3;
+		--line: #2F375C;
+		--line-strong: #3E4770;
+		--violet: #7357E6;
+		--violet-ink: #B4A3FF;
+		--violet-soft: #2D2A5C;
+		--plate: #1F7D5C;
+		--plate-off: #5A6182;
+		--brick: #E5604F;
+		--amber-mark: #F0A92A;
+		--ground: #39426B;
+		--wall: #2A3155;
+		--wall-edge: #3A4370;
+		--eave: rgba(0, 0, 0, 0.22);
+		--frame: #2A3155;
+		--win-off: #161B33;
+		--sign: #F2F3FA;
+		--glow-strength: 0.95;
+		--steel: #8F98B5;
+		--wood: #B58248;
+		--parcel: #B9844C;
+		--parcel-edge: #6E4520;
+		--parcel-tape: #D9BE92;
+		--ghost-roof: #2E365A;
+		--ghost-wall: #1E2442;
+		--ghost-edge: #4A547F;
+		--roof-violet: #6B50CF;
+		--roof-orange: #D9772A;
+		--roof-teal: #13898A;
+		--shadow-1: 0 1px 2px rgba(0, 0, 0, 0.25);
+		--shadow-2: 0 2px 6px rgba(0, 0, 0, 0.25), 0 12px 30px -8px rgba(0, 0, 0, 0.5);
+	}
+}
+
+/* ---------- base ---------- */
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	background: var(--mist);
+	color: var(--ink);
+	font: 400 16px/1.6 var(--font-ui);
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: var(--violet-ink);
+	text-underline-offset: 0.18em;
+}
+
+a:hover {
+	text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+	outline: 2.5px solid var(--violet);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+code, pre {
+	font-family: var(--font-mono);
+	font-size: 0.88em;
+}
+
+code {
+	padding: 0.1em 0.35em;
+	border-radius: 6px;
+	background: var(--surface-2);
+	border: 1px solid var(--line);
+	overflow-wrap: anywhere;
+}
+
+pre {
+	margin: 0 0 16px;
+	padding: 14px 16px;
+	border-radius: var(--r-md);
+	background: var(--surface);
+	border: 1px solid var(--line);
+	overflow-x: auto;
+}
+
+pre code {
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: inherit;
+}
+
+h1, h2, h3 {
+	font-family: var(--font-round);
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+}
+
+.wrap {
+	width: 100%;
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 0 24px;
+}
+
+.skip {
+	position: absolute;
+	left: 12px;
+	top: -60px;
+	padding: 8px 14px;
+	border-radius: 999px;
+	background: var(--surface);
+	box-shadow: var(--shadow-2);
+	z-index: 10;
+}
+
+.skip:focus {
+	top: 12px;
+}
+
+.svg-defs {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.muted {
+	color: var(--ink-2);
+}
+
+.mono {
+	font-family: var(--font-mono);
+	font-size: 0.92em;
+}
+
+/* ---------- header ---------- */
+
+.top {
+	padding: 18px 0;
+}
+
+.top-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--ink);
+	text-decoration: none;
+	min-width: 0;
+}
+
+.brand-mark {
+	flex: none;
+	border-radius: 9px;
+}
+
+.brand-name {
+	font: 700 17px/1.2 var(--font-round);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.nav {
+	display: flex;
+	gap: 4px;
+	flex: none;
+}
+
+.nav a {
+	padding: 6px 12px;
+	border-radius: 999px;
+	color: var(--ink-2);
+	font-weight: 600;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.nav a:hover {
+	background: var(--surface);
+	color: var(--ink);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+	padding: 40px 0 24px;
+}
+
+.hero h1 {
+	max-width: 15em;
+	margin: 0 0 16px;
+	font-size: clamp(32px, 5.2vw, 50px);
+	font-weight: 700;
+}
+
+.lead {
+	max-width: 40em;
+	margin: 0 0 24px;
+	font-size: clamp(17px, 2vw, 19px);
+	color: var(--ink-2);
+}
+
+.lead a {
+	color: inherit;
+}
+
+.cta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 14px;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: 0 22px;
+	border-radius: 999px;
+	font-weight: 600;
+	font-size: 15px;
+	text-decoration: none;
+	transition: transform 0.12s var(--ease), background-color 0.2s;
+}
+
+.btn:active {
+	transform: scale(0.97);
+}
+
+.btn-primary {
+	background: var(--violet);
+	color: #FFFFFF;
+	box-shadow: var(--shadow-1);
+}
+
+.btn-primary:hover {
+	background: color-mix(in srgb, var(--violet) 88%, #000);
+}
+
+.btn-quiet {
+	background: var(--surface);
+	color: var(--ink);
+	border: 1px solid var(--line);
+}
+
+.btn-quiet:hover {
+	border-color: var(--line-strong);
+}
+
+.fine {
+	margin: 0 0 36px;
+	font-size: 14px;
+	color: var(--ink-3);
+}
+
+/* ---------- the street ---------- */
+
+.street-panel {
+	margin: 0;
+	padding: 24px 24px 28px;
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	box-shadow: var(--shadow-2);
+}
+
+.street-head {
+	margin-bottom: 18px;
+}
+
+.street-title {
+	margin: 0 0 4px;
+	font-size: 20px;
+}
+
+.street-head p {
+	margin: 0;
+	color: var(--ink-2);
+	font-size: 15px;
+}
+
+.street {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 30px 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.lot {
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.yard {
+	padding: 4px 16px 0 12px;
+	border-bottom: 3px solid var(--ground);
+}
+
+.yard .house, .plot-svg {
+	max-width: 196px;
+}
+
+.lot-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: 10px 6px 0;
+}
+
+.lot-name {
+	font: 700 16px/1.3 var(--font-round);
+}
+
+.lot-state {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--ink-2);
+}
+
+.lot-note {
+	font-size: 13.5px;
+	line-height: 1.5;
+	color: var(--ink-3);
+}
+
+.dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex: none;
+}
+
+.dot-on {
+	background: var(--glow);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--glow) 30%, transparent);
+}
+
+.dot-busy {
+	background: var(--steel);
+}
+
+.dot-off {
+	background: var(--ghost-edge);
+}
+
+/* ---------- the house (as in the app) ---------- */
+
+.house {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 200 / 170;
+	container-type: inline-size;
+	--roof: var(--roof-violet);
+}
+
+.house[data-color="violet"] { --roof: var(--roof-violet); }
+.house[data-color="orange"] { --roof: var(--roof-orange); }
+.house[data-color="teal"] { --roof: var(--roof-teal); }
+
+.house-svg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+.h-wall {
+	fill: var(--wall);
+	stroke: var(--wall-edge);
+	stroke-width: 1.5;
+}
+
+.h-eave {
+	fill: var(--eave);
+}
+
+.h-roof {
+	fill: var(--roof);
+	stroke: color-mix(in srgb, var(--roof) 72%, #000);
+	stroke-width: 1.5;
+	stroke-linejoin: round;
+}
+
+.h-sign {
+	fill: var(--sign);
+	stroke: color-mix(in srgb, var(--roof) 70%, #000);
+	stroke-width: 1.5;
+}
+
+.h-emoji {
+	font-family: var(--font-emoji);
+}
+
+.h-win {
+	fill: var(--win-off);
+	stroke: color-mix(in srgb, var(--roof) 40%, var(--wall-edge));
+	stroke-width: 1.5;
+}
+
+.h-mullion {
+	fill: none;
+	stroke: var(--frame);
+	stroke-width: 2.5;
+}
+
+.h-glow {
+	fill: var(--glow);
+	filter: url(#hb-glow);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.h-door {
+	fill: color-mix(in srgb, var(--roof) 55%, #1F2440);
+}
+
+.h-knob {
+	fill: var(--glow);
+}
+
+.h-step {
+	fill: var(--ground);
+}
+
+/* first paint: the windows of running houses switch on along the street */
+
+.house[data-lights="on"] .h-win {
+	fill: var(--glow);
+	animation: win-on 0.45s var(--delay, 0ms) var(--ease) both;
+}
+
+.house[data-lights="on"] .h-glow {
+	opacity: var(--glow-strength);
+	animation: glow-on 0.9s var(--delay, 0ms) var(--ease) both;
+}
+
+.house[data-lights="off"] .house-svg {
+	filter: saturate(0.5);
+}
+
+@keyframes win-on { from { fill: var(--win-off); } to { fill: var(--glow); } }
+@keyframes glow-on { from { opacity: 0; } to { opacity: var(--glow-strength); } }
+
+/* parcel on the doorstep: an update */
+
+.h-box {
+	fill: var(--parcel);
+	stroke: var(--parcel-edge);
+	stroke-width: 1.5;
+}
+
+.h-tape {
+	stroke: var(--parcel-tape);
+	stroke-width: 2.5;
+	fill: none;
+}
+
+/* scaffolding: a job is rebuilding the house */
+
+.h-pole, .h-brace {
+	fill: none;
+	stroke: var(--steel);
+	stroke-linecap: round;
+}
+
+.h-pole {
+	stroke-width: 3.2;
+}
+
+.h-brace {
+	stroke-width: 2;
+	opacity: 0.75;
+}
+
+.h-plank {
+	fill: none;
+	stroke: var(--wood);
+	stroke-width: 5.5;
+	stroke-linecap: round;
+}
+
+/* the door plate: the address */
+
+.plate {
+	position: absolute;
+	left: 44.5%;
+	top: 80.6%;
+	height: 11.4%;
+	display: inline-flex;
+	align-items: center;
+	padding: 0 0.6em;
+	border-radius: 0.28em;
+	background: var(--plate);
+	color: #FFFFFF;
+	box-shadow: inset 0 0 0 0.12em rgba(255, 255, 255, 0.82), inset 0 0 0 0.22em var(--plate), 0 1px 0 rgba(0, 0, 0, 0.18);
+	font: 700 6.3cqw/1 var(--font-round);
+	font-variant-numeric: tabular-nums;
+	letter-spacing: 0.01em;
+	white-space: nowrap;
+}
+
+.plate.is-progress {
+	background: linear-gradient(90deg, var(--plate) var(--p, 0%), color-mix(in srgb, var(--plate) 40%, var(--plate-off)) var(--p, 0%));
+	min-width: 30%;
+	justify-content: center;
+}
+
+/* not managed yet: grey */
+
+.house[data-kind="unmanaged"] .h-roof {
+	fill: var(--ghost-roof);
+	stroke: var(--ghost-edge);
+}
+
+.house[data-kind="unmanaged"] .h-wall,
+.house[data-kind="unmanaged"] .h-sign {
+	fill: var(--ghost-wall);
+	stroke: var(--ghost-edge);
+}
+
+.house[data-kind="unmanaged"] .h-emoji {
+	opacity: 0.4;
+	filter: grayscale(1);
+}
+
+.house[data-kind="unmanaged"] .h-door {
+	fill: var(--ghost-edge);
+}
+
+.house[data-kind="unmanaged"] .h-knob {
+	fill: var(--ghost-wall);
+}
+
+.house[data-kind="unmanaged"] .h-win {
+	stroke: var(--ghost-edge);
+	fill: color-mix(in srgb, var(--glow) 45%, var(--win-off));
+	animation: none;
+}
+
+.house[data-kind="unmanaged"] .h-glow {
+	opacity: 0;
+	animation: none;
+}
+
+.house[data-kind="unmanaged"] .plate {
+	background: var(--plate-off);
+	box-shadow: inset 0 0 0 0.12em rgba(255, 255, 255, 0.7), inset 0 0 0 0.22em var(--plate-off);
+}
+
+/* the empty lot at the end of the street */
+
+.plot-svg {
+	display: block;
+	width: 100%;
+	aspect-ratio: 200 / 170;
+	overflow: visible;
+}
+
+.plot-outline {
+	fill: none;
+	stroke: var(--line-strong);
+	stroke-width: 2;
+	stroke-dasharray: 2 7;
+	stroke-linecap: round;
+}
+
+.plot-post {
+	stroke: var(--wood);
+	stroke-width: 4;
+	stroke-linecap: round;
+}
+
+.plot-sign {
+	fill: var(--surface);
+	stroke: var(--violet);
+	stroke-width: 2.5;
+}
+
+.plot-plus {
+	stroke: var(--violet);
+	stroke-width: 3.5;
+	stroke-linecap: round;
+}
+
+/* ---------- sections ---------- */
+
+.section {
+	padding: 64px 0;
+}
+
+.section-alt {
+	background: var(--surface);
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+}
+
+.section-title {
+	margin: 0 0 24px;
+	font-size: clamp(26px, 3.4vw, 32px);
+}
+
+.section-lead {
+	max-width: 44em;
+	margin: -8px 0 32px;
+	font-size: 17px;
+	color: var(--ink-2);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 16px;
+}
+
+.card {
+	padding: 20px 20px 18px;
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	border: 1px solid var(--line);
+	box-shadow: var(--shadow-1);
+}
+
+.card h3 {
+	margin: 0 0 8px;
+	font-size: 18px;
+}
+
+.card p {
+	margin: 0;
+	font-size: 15px;
+	color: var(--ink-2);
+}
+
+.two-col {
+	display: grid;
+	grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+	gap: 40px;
+	align-items: start;
+}
+
+.how-cols {
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	margin-top: 40px;
+}
+
+.steps {
+	margin: 0 0 20px;
+	padding: 0;
+	list-style: none;
+	counter-reset: step;
+}
+
+.steps li {
+	position: relative;
+	padding: 0 0 14px 44px;
+	counter-increment: step;
+}
+
+.steps li::before {
+	content: counter(step);
+	position: absolute;
+	left: 0;
+	top: -1px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	background: var(--violet-soft);
+	color: var(--violet-ink);
+	font: 700 15px/1 var(--font-round);
+}
+
+.box {
+	padding: 22px 22px 18px;
+	border-radius: var(--r-lg);
+	background: var(--mist);
+	border: 1px solid var(--line);
+}
+
+.box h3 {
+	margin: 0 0 10px;
+	font-size: 18px;
+}
+
+.plain {
+	margin: 0 0 12px;
+	padding-left: 1.1em;
+}
+
+.plain li {
+	margin-bottom: 8px;
+}
+
+.plain li::marker {
+	color: var(--ink-3);
+}
+
+.sub {
+	margin: 0 0 10px;
+	font-size: 19px;
+}
+
+.flow {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+	margin: 16px 0 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: flow;
+}
+
+.flow li {
+	position: relative;
+	padding: 16px 16px 14px;
+	border-radius: var(--r-md);
+	background: var(--surface);
+	border: 1px solid var(--line);
+	font-size: 15px;
+	color: var(--ink-2);
+	counter-increment: flow;
+}
+
+.flow li::before {
+	content: counter(flow);
+	display: block;
+	margin-bottom: 6px;
+	font: 700 13px/1 var(--font-round);
+	color: var(--ink-3);
+}
+
+.flow strong {
+	color: var(--ink);
+}
+
+.more {
+	margin: 32px 0 0;
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+	padding: 36px 0 48px;
+	border-top: 1px solid var(--line);
+	font-size: 14px;
+}
+
+.foot p {
+	margin: 0 0 8px;
+	max-width: 52em;
+}
+
+.foot-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 18px;
+	margin-top: 14px !important;
+	font-weight: 600;
+}
+
+/* ---------- narrow screens ---------- */
+
+@media (max-width: 860px) {
+	.two-col, .how-cols {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 28px;
+	}
+
+	.flow {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 600px) {
+	.wrap {
+		padding: 0 16px;
+	}
+
+	.nav a:not(.nav-gh) {
+		display: none;
+	}
+
+	.hero {
+		padding-top: 24px;
+	}
+
+	.street-panel {
+		padding: 18px 12px 22px;
+	}
+
+	.street {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 24px 4px;
+	}
+
+	.yard {
+		padding: 4px 8px 0 6px;
+	}
+
+	.section {
+		padding: 48px 0;
+	}
+
+	.flow {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*, *::before, *::after {
+		animation-duration: 0.001ms !important;
+		animation-delay: 0ms !important;
+		transition-duration: 0.001ms !important;
+	}
+}
+
+@media (max-width: 420px) {
+	.brand-name {
+		font-size: 15px;
+	}
+}

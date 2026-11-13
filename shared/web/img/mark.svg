@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Homebridge QPKG mark: houses on one street at dusk, the one in front lit.
+       The same house as in the web UI (roof, sign in the gable, two windows, door).
+       Source for icons/Homebridge.png, Homebridge_80.png, Homebridge_gray.png,
+       shared/.qpkg_icon_256.png and shared/web/img/mark*. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#323C7A"/>
+      <stop offset="1" stop-color="#1F2440"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <clipPath id="tile">
+      <rect x="8" y="8" width="240" height="240" rx="56"/>
+    </clipPath>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#sky)"/>
+  <g clip-path="url(#tile)">
+    <g transform="translate(-23 -26) scale(1.18)">
+      <!-- street -->
+      <path d="M46 199h164" stroke="#56619E" stroke-width="6" stroke-linecap="round"/>
+      <!-- left house: stopped -->
+      <rect x="38" y="140" width="52" height="56" rx="3" fill="#E4E8F4"/>
+      <path d="M30 145.5L60.3 118.6a5.6 5.6 0 0 1 7.4 0L98 145.5a2.4 2.4 0 0 1-1.6 4.2H31.6a2.4 2.4 0 0 1-1.6-4.2z" fill="#17A2A0"/>
+      <rect x="51" y="159" width="26" height="20" rx="3" fill="#56608F"/>
+      <!-- right house: running -->
+      <rect x="166" y="140" width="52" height="56" rx="3" fill="#E4E8F4"/>
+      <path d="M158 145.5L188.3 118.6a5.6 5.6 0 0 1 7.4 0L226 145.5a2.4 2.4 0 0 1-1.6 4.2H159.6a2.4 2.4 0 0 1-1.6-4.2z" fill="#F08A34"/>
+      <rect x="179" y="159" width="26" height="20" rx="3" fill="#FFC94A"/>
+      <!-- the house in front -->
+      <rect x="80" y="110" width="96" height="86" rx="3" fill="#FFFFFF"/>
+      <path d="M70 116.5L121 74.4a11 11 0 0 1 14 0L186 116.5a2.8 2.8 0 0 1-1.8 5H71.8a2.8 2.8 0 0 1-1.8-5z" fill="#7C5CE0"/>
+      <circle cx="128" cy="102" r="10" fill="#FFFFFF"/>
+      <rect x="87" y="129" width="36" height="28" rx="6" fill="#FFC94A" filter="url(#glow)" opacity="0.8"/>
+      <rect x="133" y="129" width="36" height="28" rx="6" fill="#FFC94A" filter="url(#glow)" opacity="0.8"/>
+      <rect x="91" y="133" width="28" height="21" rx="3.5" fill="#FFC94A"/>
+      <rect x="137" y="133" width="28" height="21" rx="3.5" fill="#FFC94A"/>
+      <path d="M114 196v-24a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v24z" fill="#4A3594"/>
+      <circle cx="136" cy="183" r="1.8" fill="#FFC94A"/>
+    </g>
+  </g>
+</svg>

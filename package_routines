@@ -1,0 +1,39 @@
+######################################################################
+# Homebridge package routines (see the QDK template for the full list of
+# available definitions).
+######################################################################
+
+# Take the UI off Apache and remove the icons. The Homebridge containers,
+# their backups (<name>.hbmgr-prev) and their work directories are never
+# touched: removing the package does not interrupt HomeKit. data/ (instance
+# records) goes with the package directory; the containers keep their
+# hbmgr.* labels and can be imported again after a reinstall. Upgrades do not
+# run this.
+PKG_PRE_REMOVE="{
+    QPKG_ROOT=\$(/sbin/getcfg Homebridge Install_Path -f /etc/config/qpkg.conf)
+    if [ -n \"\$QPKG_ROOT\" ] && [ -f \"\$QPKG_ROOT/Homebridge.sh\" ]; then
+        /bin/sh \"\$QPKG_ROOT/Homebridge.sh\" remove
+    fi
+    rm -f /etc/default_config/apache/extra/apache-homebridge.conf
+    rm -f /home/httpd/RSS/images/Homebridge.png /home/httpd/RSS/images/Homebridge_80.png /home/httpd/RSS/images/Homebridge_gray.png /home/httpd/RSS/images/Homebridge_256.png
+    rm -f /home/httpd/RSS/images/Homebridge.gif /home/httpd/RSS/images/Homebridge_80.gif /home/httpd/RSS/images/Homebridge_gray.gif /home/httpd/RSS/images/Homebridge_256.gif
+}"
+
+#PKG_MAIN_REMOVE="{
+#}"
+
+#PKG_POST_REMOVE="{
+#}"
+
+pkg_post_install(){
+    QPKG_ROOT=$(/sbin/getcfg Homebridge Install_Path -f /etc/config/qpkg.conf)
+    if [ -n "$QPKG_ROOT" ]; then
+        # data/ is not part of the package: it survives upgrades
+        mkdir -p "${QPKG_ROOT}/data"
+        chmod 700 "${QPKG_ROOT}/data"
+        chown 0:0 "${QPKG_ROOT}/data"
+        chmod 755 "${QPKG_ROOT}/Homebridge.sh" "${QPKG_ROOT}/bin/hbmgr" 2>/dev/null
+    fi
+    # Mark the install complete so App Center shows the app as ready
+    /sbin/setcfg Homebridge Status complete -f /etc/config/qpkg.conf
+}

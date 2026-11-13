@@ -1,0 +1,255 @@
+{
+    "Id": "b190e2fb6016ffd1096151e7840a71c363279569e559a09cb6e4be4c3ebe856f",
+    "Created": "2025-09-20T01:39:18.755844348Z",
+    "Path": "/init",
+    "Args": [],
+    "State": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 27956,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-29T08:30:29.199553527Z",
+        "FinishedAt": "2026-10-29T08:30:02.011647147Z"
+    },
+    "Image": "sha256:4602d8486a4ca640b35579565c2a7e5ff67ca61e3ec143709843e68e7136271e",
+    "ResolvConfPath": "/var/lib/docker/containers/b190e2fb6016ffd1096151e7840a71c363279569e559a09cb6e4be4c3ebe856f/resolv.conf",
+    "HostnamePath": "/var/lib/docker/containers/b190e2fb6016ffd1096151e7840a71c363279569e559a09cb6e4be4c3ebe856f/hostname",
+    "HostsPath": "/var/lib/docker/containers/b190e2fb6016ffd1096151e7840a71c363279569e559a09cb6e4be4c3ebe856f/hosts",
+    "LogPath": "/var/lib/docker/containers/b190e2fb6016ffd1096151e7840a71c363279569e559a09cb6e4be4c3ebe856f/b190e2fb6016ffd1096151e7840a71c363279569e559a09cb6e4be4c3ebe856f-json.log",
+    "Name": "/homebridge-1F",
+    "RestartCount": 0,
+    "Driver": "overlay2",
+    "Platform": "linux",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "AppArmorProfile": "docker-default",
+    "ExecIDs": null,
+    "HostConfig": {
+        "Binds": [
+            "/share/Docker/homebridge-1F:/homebridge",
+            "/share/Docker/stunnel:/stunnel",
+            "/share/Develop:/Develop"
+        ],
+        "ContainerIDFile": "",
+        "LogConfig": {
+            "Type": "json-file",
+            "Config": {
+                "max-file": "10",
+                "max-size": "10m"
+            }
+        },
+        "NetworkMode": "qnet-static-bond0-3f9a2c",
+        "PortBindings": {},
+        "RestartPolicy": {
+            "Name": "always",
+            "MaximumRetryCount": 0
+        },
+        "AutoRemove": false,
+        "VolumeDriver": "",
+        "VolumesFrom": null,
+        "ConsoleSize": [
+            51,
+            231
+        ],
+        "CapAdd": null,
+        "CapDrop": null,
+        "CgroupnsMode": "host",
+        "Dns": [],
+        "DnsOptions": [],
+        "DnsSearch": [],
+        "ExtraHosts": null,
+        "GroupAdd": null,
+        "IpcMode": "private",
+        "Cgroup": "",
+        "Links": null,
+        "OomScoreAdj": 0,
+        "PidMode": "",
+        "Privileged": false,
+        "PublishAllPorts": false,
+        "ReadonlyRootfs": false,
+        "SecurityOpt": null,
+        "UTSMode": "",
+        "UsernsMode": "",
+        "ShmSize": 67108864,
+        "Runtime": "runc",
+        "Isolation": "",
+        "CpuShares": 0,
+        "Memory": 0,
+        "NanoCpus": 0,
+        "CgroupParent": "",
+        "BlkioWeight": 0,
+        "BlkioWeightDevice": [],
+        "BlkioDeviceReadBps": [],
+        "BlkioDeviceWriteBps": [],
+        "BlkioDeviceReadIOps": [],
+        "BlkioDeviceWriteIOps": [],
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "CpuRealtimePeriod": 0,
+        "CpuRealtimeRuntime": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "Devices": [],
+        "DeviceCgroupRules": null,
+        "DeviceRequests": null,
+        "MemoryReservation": 0,
+        "MemorySwap": 0,
+        "MemorySwappiness": null,
+        "OomKillDisable": false,
+        "PidsLimit": null,
+        "Ulimits": [
+            {
+                "Name": "nofile",
+                "Hard": 65535,
+                "Soft": 65535
+            }
+        ],
+        "CpuCount": 0,
+        "CpuPercent": 0,
+        "IOMaximumIOps": 0,
+        "IOMaximumBandwidth": 0,
+        "MaskedPaths": [
+            "/proc/asound",
+            "/proc/acpi",
+            "/proc/kcore",
+            "/proc/keys",
+            "/proc/latency_stats",
+            "/proc/timer_list",
+            "/proc/timer_stats",
+            "/proc/sched_debug",
+            "/proc/scsi",
+            "/sys/firmware",
+            "/sys/devices/virtual/powercap"
+        ],
+        "ReadonlyPaths": [
+            "/proc/bus",
+            "/proc/fs",
+            "/proc/irq",
+            "/proc/sys",
+            "/proc/sysrq-trigger"
+        ]
+    },
+    "GraphDriver": {
+        "Data": null,
+        "Name": "overlay2"
+    },
+    "Mounts": [
+        {
+            "Type": "bind",
+            "Source": "/share/Develop",
+            "Destination": "/Develop",
+            "Mode": "",
+            "RW": true,
+            "Propagation": "rprivate"
+        },
+        {
+            "Type": "bind",
+            "Source": "/share/Docker/homebridge-1F",
+            "Destination": "/homebridge",
+            "Mode": "",
+            "RW": true,
+            "Propagation": "rprivate"
+        },
+        {
+            "Type": "bind",
+            "Source": "/share/Docker/stunnel",
+            "Destination": "/stunnel",
+            "Mode": "",
+            "RW": true,
+            "Propagation": "rprivate"
+        }
+    ],
+    "Config": {
+        "Hostname": "1f.example.com",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "ExposedPorts": {
+            "8581/tcp": {}
+        },
+        "Tty": true,
+        "OpenStdin": true,
+        "StdinOnce": false,
+        "Env": [
+            "TZ=Asia/Taipei",
+            "PATH=/opt/homebridge/bin:/var/lib/homebridge/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "S6_OVERLAY_VERSION=3.1.1.2",
+            "S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0",
+            "S6_KEEP_ENV=1",
+            "ENABLE_AVAHI=1",
+            "USER=root",
+            "HOMEBRIDGE_APT_PACKAGE=1",
+            "UIX_CUSTOM_PLUGIN_PATH=/var/lib/homebridge/node_modules",
+            "HOME=/home/homebridge",
+            "npm_config_prefix=/opt/homebridge",
+            "HOMEBRIDGE_PKG_VERSION=1.0.33"
+        ],
+        "Cmd": null,
+        "Image": "oznu/homebridge:latest",
+        "Volumes": {
+            "/homebridge": {}
+        },
+        "WorkingDir": "/homebridge",
+        "Entrypoint": [
+            "/init"
+        ],
+        "OnBuild": null,
+        "Labels": {
+            "org.opencontainers.image.authors": "oznu",
+            "org.opencontainers.image.description": "Official Homebridge Docker Image",
+            "org.opencontainers.image.licenses": "GPL-3.0",
+            "org.opencontainers.image.title": "Homebridge in Docker",
+            "org.opencontainers.image.url": "https://github.com/oznu/docker-homebridge"
+        }
+    },
+    "NetworkSettings": {
+        "Bridge": "",
+        "SandboxID": "5f2133daa0385a030e99a8e7e719c381d71decc0b3ea1d725400439fd61e39df",
+        "SandboxKey": "/var/run/docker/netns/5f2133daa038",
+        "Ports": {},
+        "HairpinMode": false,
+        "LinkLocalIPv6Address": "",
+        "LinkLocalIPv6PrefixLen": 0,
+        "SecondaryIPAddresses": null,
+        "SecondaryIPv6Addresses": null,
+        "EndpointID": "",
+        "Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "IPAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "MacAddress": "",
+        "Networks": {
+            "qnet-static-bond0-3f9a2c": {
+                "IPAMConfig": {
+                    "IPv4Address": "192.168.10.7"
+                },
+                "Links": null,
+                "Aliases": null,
+                "MacAddress": "02:42:5e:7a:21:0c",
+                "DriverOpts": null,
+                "NetworkID": "2c68cf9b5c425dbd0c8a18a969d763c69293c675f71413757c091820463b2ce5",
+                "EndpointID": "b7b97e645dab5ab31d117d5a6b6c2abe37ae1ba2af328ab0fd8c7c9305385c2a",
+                "Gateway": "192.168.8.1",
+                "IPAddress": "192.168.10.7",
+                "IPPrefixLen": 22,
+                "IPv6Gateway": "",
+                "GlobalIPv6Address": "",
+                "GlobalIPv6PrefixLen": 0,
+                "DNSNames": [
+                    "homebridge-1F",
+                    "b190e2fb6016",
+                    "1f.example.com"
+                ]
+            }
+        }
+    }
+}
