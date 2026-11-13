@@ -914,6 +914,84 @@ h1, h2, h3 {
 	font-weight: 600;
 }
 
+.link-btn {
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--violet-ink);
+	font: inherit;
+	text-decoration: underline;
+	text-underline-offset: 0.18em;
+	cursor: pointer;
+}
+
+/* ---------- analytics consent ---------- */
+
+.consent {
+	position: fixed;
+	left: 16px;
+	right: 16px;
+	bottom: 16px;
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	max-width: 720px;
+	margin: 0 auto;
+	padding: 16px 18px;
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	border: 1px solid var(--line);
+	box-shadow: 0 4px 10px rgba(31, 36, 64, 0.08), 0 28px 64px -12px rgba(31, 36, 64, 0.38);
+	animation: consent-in 0.22s var(--ease) both;
+}
+
+.consent[hidden] {
+	display: none;
+}
+
+.consent p {
+	margin: 0;
+	font-size: 14.5px;
+	line-height: 1.5;
+	color: var(--ink-2);
+}
+
+.consent-actions {
+	display: flex;
+	gap: 8px;
+	flex: none;
+}
+
+.consent .btn {
+	min-height: 40px;
+	padding: 0 18px;
+	border: 1px solid transparent;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+.consent .btn-quiet {
+	border-color: var(--line);
+}
+
+@keyframes consent-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 600px) {
+	.consent {
+		flex-direction: column;
+		align-items: stretch;
+		left: 12px;
+		right: 12px;
+		bottom: 12px;
+	}
+
+	.consent .btn {
+		flex: 1;
+		justify-content: center;
+	}
+}
+
 /* ---------- narrow screens ---------- */
 
 @media (max-width: 860px) {

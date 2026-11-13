@@ -16,6 +16,7 @@
 	<link rel="icon" type="image/png" sizes="64x64" href="img/mark-64.png">
 	<link rel="apple-touch-icon" href="img/mark-180.png">
 	<link rel="stylesheet" href="style.css">
+	<script src="analytics.js" defer></script>
 </head>
 <body>
 	<a class="skip" href="#main">Skip to the content</a>
@@ -50,7 +51,7 @@
 				<h1>Several Homebridges on one QNAP NAS</h1>
 				<p class="lead">A QTS app that runs each <a href="https://homebridge.io">Homebridge</a> in its own Docker container, with its own address on your home network, and looks after all of them from one page on the QTS desktop.</p>
 				<div class="cta">
-					<a class="btn btn-primary" href="https://github.com/tasict/qnap-homebridge-manager/releases/latest">Download the latest release</a>
+					<a class="btn btn-primary" href="https://github.com/tasict/qnap-homebridge-manager/releases/latest" data-download="hero">Download the latest release</a>
 					<a class="btn btn-quiet" href="https://github.com/tasict/qnap-homebridge-manager">Source on GitHub</a>
 				</div>
 				<p class="fine">For x86_64 NAS models with QTS 5 and Container Station. The app’s interface is in Traditional Chinese and Japanese.</p>
@@ -229,7 +230,7 @@
 				<div>
 					<h2 class="section-title" id="install-title">Install</h2>
 					<ol class="steps">
-						<li>Download <code>Homebridge_&lt;version&gt;_x86_64.qpkg</code> from the <a href="https://github.com/tasict/qnap-homebridge-manager/releases/latest">latest release</a>.</li>
+						<li>Download <code>Homebridge_&lt;version&gt;_x86_64.qpkg</code> from the <a href="https://github.com/tasict/qnap-homebridge-manager/releases/latest" data-download="install">latest release</a>.</li>
 						<li>In QTS, open <strong>App Center</strong>, choose <strong>Install Manually</strong> and select the file.</li>
 						<li>The package is not signed by QNAP. If App Center refuses it, allow the installation of apps without a valid digital signature in App Center’s settings, then try again.</li>
 						<li>Open <strong>Homebridge</strong> from the QTS main menu.</li>
@@ -355,7 +356,8 @@
 		<div class="wrap foot-inner">
 			<p>QNAP Homebridge Manager is free software under the <a href="https://github.com/tasict/qnap-homebridge-manager/blob/master/LICENSE">GNU General Public License v3.0 or later</a>.</p>
 			<p class="muted">An independent project, not affiliated with or endorsed by the Homebridge project or QNAP Systems. Homebridge runs from the official <a href="https://hub.docker.com/r/homebridge/homebridge"><code>homebridge/homebridge</code></a> image, which has its own license.</p>
-			<p class="foot-links"><a href="https://github.com/tasict/qnap-homebridge-manager">Source</a><a href="https://github.com/tasict/qnap-homebridge-manager/releases">Releases</a><a href="https://github.com/tasict/qnap-homebridge-manager/issues">Issues</a></p>
+			<p class="muted" data-consent-note hidden>If you allow it, this site uses Google Analytics cookies to count visits and download clicks. <button type="button" class="link-btn" data-consent-settings>Cookie settings</button></p>
+			<p class="foot-links"><a href="https://github.com/tasict/qnap-homebridge-manager">Source</a><a href="https://github.com/tasict/qnap-homebridge-manager/releases" data-download="footer">Releases</a><a href="https://github.com/tasict/qnap-homebridge-manager/issues">Issues</a></p>
 		</div>
 	</footer>
 </body>
